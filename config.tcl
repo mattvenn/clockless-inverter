@@ -6,8 +6,8 @@ set ::env(VERILOG_FILES) [glob $::env(DESIGN_DIR)/src/*.v]
 
 
 # Fill this
-set ::env(CLOCK_TREE_SYNTH) 0
-set ::env(PL_SKIP_INITIAL_PLACEMENT) 1
+set ::env(CLOCK_PERIOD) "10.000"
+set ::env(CLOCK_PORT) "clk"
 
 set ::env(PL_TARGET_DENSITY) 0.9
 set ::env(FP_CORE_UTIL) 10; # 10 % utilization

@@ -1,8 +1,10 @@
 `default_nettype none
 module inverter (
+    input wire clk,
     input wire in,
-    output out );
+    output reg out );
 
-    assign out = !in;
+    always @(posedge clk)
+        out <= !in;
 
 endmodule
