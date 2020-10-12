@@ -4,6 +4,7 @@ set ::env(DESIGN_NAME) inverter
 # Change if needed
 set ::env(VERILOG_FILES) [glob $::env(DESIGN_DIR)/src/*.v]
 
+# https://github.com/efabless/openlane/blob/master/configuration/README.md
 
 # Fill this
 set ::env(CLOCK_PERIOD) 0
