@@ -1,0 +1,31 @@
+CAPI=2:
+
+name : ::inverter:1.0.0
+
+filesets:
+  rtl:
+    files:
+      - src/inverter.v
+    file_type : verilogSource
+    
+  openlane:
+    files:
+      - data/params.tcl
+    file_type : tclSource
+
+targets:
+  default:
+    filesets : [rtl]
+
+  lint:
+    default_tool: verilator
+    filesets : [rtl]
+    tools:
+      verilator:
+        mode: lint-only
+    toplevel : inverter
+        
+  sky130:
+    default_tool : openlane
+    filesets : [rtl, openlane]
+    toplevel: inverter

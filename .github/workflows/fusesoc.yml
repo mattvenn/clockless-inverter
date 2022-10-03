@@ -1,0 +1,33 @@
+name: build-openlane-sky130
+on: [push]
+
+jobs:
+  build-openlane:
+    runs-on: ubuntu-latest
+    env:
+      REPO : clockless-inverter
+      VLNV : inverter
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          path: clockless-inverter
+      - run: echo "EDALIZE_LAUNCHER=el_docker" >> $GITHUB_ENV
+      - run: pip3 install fusesoc
+      - run: fusesoc library add $REPO $GITHUB_WORKSPACE/$REPO
+      - run: fusesoc run --target=sky130 $VLNV
+
+  lint-verilator:
+    runs-on: ubuntu-latest
+    env:
+      REPO : clockless-inverter
+      VLNV : inverter
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          path: clockless-inverter
+      - run: sudo apt install verilator
+      - run: pip3 install fusesoc
+      - run: fusesoc library add $REPO $GITHUB_WORKSPACE/$REPO
+      - run: fusesoc run --target=lint $VLNV
